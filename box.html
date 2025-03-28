@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>box style </title>
+        <style>
+        .container{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .one{
+            background-color: rgba(245, 10, 10, 0.468);
+            margin: 5px;
+            height: 100px;
+            flex-basis: 20%;
+        }
+        #t1{
+            background-color: aqua;
+        }
+        #t2{
+            background-color: rgb(254, 9, 9);
+        }
+        #t3{
+            background-color: rgb(107, 6, 250);
+        }
+        #t4{
+            background-color: rgb(255, 0, 162);
+        }
+        @media  screen and (max-width: 600px) {
+            .one{
+                flex-basis:  40%;
+            }
+           
+        }
+        @media screen and (max-width:400px) {
+            .one{
+                flex-basis: 100%;
+            }
+        } 
+        h1{
+            color: yellowgreen;
+        }
+            
+        
+        </style>
+    </head>
+    <body>
+        <div class ="container">
+        <div class="one" id="t1"><h1 ><center>KAVIN</center></h1></div>
+        <div class="one" id="t2"><h1><center>TAMIL</center></h1></div>
+        <div class="one" id="t3"><h1><center>LOGESH</center></h1></div>
+        <div class="one" id="t4"><h1><center>KISHORE</center></h1></div>
+        </div>
+    </body>
+</html>

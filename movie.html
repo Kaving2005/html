@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Movie App</title>
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ background-color: #f0f0f0;
+ text-align: center;
+ }
+ #movies {
+ display: flex;
+ flex-wrap: wrap;
+ justify-com
+ movie {
+ width: 200px;
+ margin: 20px;
+ border: 1px solid #ddd;
+ border-radius: 5px;
+ overflow: hidden;
+ background-color: white;
+ }
+ .movie img {
+ width: 100%;
+ height: 300px;
+ object-fit: cover;
+ }
+ .movie h3 {
+ margin: 10px;
+ }
+ .movie p {
+ padding: 0 10px;
+ }
+ .loading {
+ font-size: 24px;
+ margin-top: 50px;
+ }
+ </style>
+</head>
+<body>
+ <h1>Movie App</h1>
+ <input type="text" id="search" placeholder="Search for a movie..." oninput="searchMovies()" />
+ <div id="movies"></div>
+ <div id="loading" class="loading" style="display: none;">Loading...</div>
+ <script>
+ const API_KEY = '263d22d8'; // Replace with your TMDB API key
+ const API_URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
+ async function fetchMovies(query = '') {
+ try {
+ document.getElementById('loading').style.display = 'block'; // Show loading message
+ const response = await fetch(API_URL + query);
+ const data = await response.json();
+ displayMovies(data.results);
+ } catch (error) {
+ console.error("Error fetching data: ", error);
+ } finally {
+ document.getElementById('loading').style.display = 'none'; // Hide loading message
+ }
+}
+ function displayMovies(movies) {
+ const movieContainer = document.getElementById('movies');
+ movieContainer.innerHTML = ''; // Clear previous movies
+ if (movies.length === 0) {
+ movieContainer.innerHTML = "<p>No movies found</p>";
+ return;
+ }
+ movies.forEach(movie => {
+ const movieElement = document.createElement('div');
+ movieElement.classList.add('movie');
+ movieElement.innerHTML = `
+ <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+ <h3>${movie.title}</h3>
+ <p>${movie.overview.substring(0, 100)}...</p>
+ `;
+ movieContainer.appendChild(movieElement);
+ });
+ }
+ function searchMovies() {
+ const query = document.getElementById('search').value;
+ fetchMovies(query);
+ }
+ // Initial fetch to load popular movies when page is loaded
+ fetchMovies();
+ </script>
+</body>
+</html>

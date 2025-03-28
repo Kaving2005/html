@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+</head>
+<body>
+    <h2>Todo List</h2>
+    <ul id="todolist">
+    </ul>
+    <div>
+        <input id="addtask" type="text">
+        <button id="submit">Add Task</button>
+    </div>
+</body>
+<script>
+    let submit =document.getElementById('submit');
+    let addtask=document.getElementById('addtask');
+    let todolist = document.getElementById('todolist');
+    let list = new Array();
+    submit.addEventListener('click',(event)=>{
+        list.push(addtask.value);
+        todolist.innerHTML='<li>'+addtask.value+'</li>'
+    console.log(addtask.value);
+    
+    });
+    
+    
+</script>
+</html>
